@@ -10,12 +10,13 @@
             <span class="secondary-content"><%= message.to %></span>
             <span class="secondary-content"> <br><%= convert(message.createdAt) %></span>
             <p class="black-text"><%= message.message %>.</p>
-            <% if(message.status =='delivered'){ %>
+            <% if(message.status =='delivered' || message.status =='sent'){ %>
                 <div class=" badges green"> <i class="material-icons left">done</i><%= message.status %></div>
-            <% }else{ %>
+            <% }else if(message.status =='queued'){ %>
+                <div class=" badges blue"><i class="material-icons left">report_problem</i><%= message.status %></div>
+            <% }else { %>
                 <div class=" badges red"><i class="material-icons left">report_problem</i><%= message.status %></div>
             <% } %>
-
         </li>
         <% }); %>
 

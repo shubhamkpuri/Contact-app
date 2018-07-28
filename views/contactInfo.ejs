@@ -1,0 +1,18 @@
+<%# including header %>
+<% include ./partials/header.ejs %>
+    <div class="container">
+        <div class="center-align ">
+
+            <h4 class="light-blue-text center-align"> Contact Info</h4>
+            <img src="https://api.adorable.io/avatars/200/<%= contact.id %>" alt="" class="circle">
+            <br>
+            <h3 class="title"> <%= contact.fname +" " %> <% if(contact.lname) %> <%=contact.lname %>  </h3>
+            <p>
+                <%= contact.number %>
+             </p>
+            <a href="/contacts/<%=contact.id %>/compose" class="btn light-blue"> Send Message <i class="material-icons right">send</i></a>
+
+        </div>
+    </div>
+<%# including footer %>
+<% include ./partials/footer.ejs %>

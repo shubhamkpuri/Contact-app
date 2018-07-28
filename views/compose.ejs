@@ -1,0 +1,29 @@
+<% include ./partials/header.ejs %>
+<%
+    // joining first and last name to make Full Name
+    var completeName = contact.fname;
+    if(contact.lname)
+     completeName +=  " "+contact.lname ;
+     // Generating a random number between 100000 - 999999.
+    var randomNumber = 100000 + Math.floor(Math.random() * 900000);
+%>
+    <div class="container">
+        <div class="center-align ">
+            <h4 class="light-blue-text center-align"> Compose</h4>
+            <img src="https://api.adorable.io/avatars/200/<%= contact.id %>" alt="" class="circle">
+            <br>
+            <h3 class="title"> <%= completeName %></h3>
+                <div class="row center-align">
+                    <input id="number" type="hidden" class="validate" value="<%= contact.number %>">
+                    <input id="name" type="hidden" class="validate" value="<%= completeName %>">
+                    <div class="input-field col m6 s8 offset-s2 offset-m3 ">
+                        <input id="message" type="text" class="validate " disabled name="message" value="Hi. Your OTP is: <%= randomNumber %>">
+                        <label for="message">Enter message</label>
+                    </div>
+                </div>
+            <input type="submit"  class="btn light-blue" id="subbutton" onclick="send()" value="Send Message ">
+                <p id="response"></p>
+        </div>
+    </div>
+
+<% include ./partials/footer.ejs %>

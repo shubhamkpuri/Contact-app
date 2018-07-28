@@ -1,0 +1,40 @@
+<% include ./partials/header.ejs %>
+
+<div class="container">
+    <h2 class="light-blue-text center-align">Sent Messages</h2>
+    <ul class="collection">
+        <% messages.forEach(message => { %>
+        <li href="" class="collection-item avatar">
+            <img src="https://api.adorable.io/avatars/20/ <%= message.name%> " alt="" class="circle">
+            <span class="title light-blue-text"> <%= message.name +" " %>   </span>
+            <span class="secondary-content"><%= message.to %></span>
+            <span class="secondary-content"> <br><%= convert(message.createdAt) %></span>
+            <p class="black-text"><%= message.message %>.</p>
+            <% if(message.status =='delivered'){ %>
+                <div class=" badges green"> <i class="material-icons left">done</i><%= message.status %></div>
+            <% }else{ %>
+                <div class=" badges red"><i class="material-icons left">report_problem</i><%= message.status %></div>
+            <% } %>
+
+        </li>
+        <% }); %>
+
+    </ul>
+</div>
+
+
+<%
+//function to convert given string of date into more human readable form.
+function convert(str) {
+    var date = new Date(str),
+        mnth = ("0" + (date.getMonth()+1)).slice(-2),
+        day  = ("0" + date.getDate()).slice(-2);
+        hours  = ("0" + date.getHours()).slice(-2);
+        minutes = ("0" + date.getMinutes()).slice(-2);
+    var finalDate = day+"-"+ mnth+"-"+ date.getFullYear()+" "+hours+":"+minutes;
+    return finalDate;
+}
+%>
+
+
+<% include ./partials/footer.ejs %>

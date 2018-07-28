@@ -1,0 +1,78 @@
+<% include ./partials/header.ejs %>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 ">
+                <div class="card hoverable light-blue darken-4">
+                    <div class="card-content white-text">
+                        <span class="card-title">Contact List</span>
+                        <p>This is simple Contact web App where
+                            You can add contact by clicking the button <span class="red-text">Add Contact</span> and send OTP to them. But to actually send OTP you need to add them to twilio.</p>
+                    </div>
+                    <div class="card-action">
+                        <ul class="collapsible center-align">
+                            <li>
+                                <div class="collapsible-header  waves-effect waves-light white-text light-blue darken-3">Add Contact </div>
+                                <div class="collapsible-body">
+                                    <form action="/contacts" method="post" class="row">
+                                        <div class="col s12">
+                                            <div class="row">
+                                                <div class="input-field col s12 m6">
+                                                    <input id="first_name" type="text" class="validate white-text" name="contact[fname]" required>
+                                                    <label for="first_name">First Name</label>
+                                                </div>
+                                                <div class="input-field col s12 m6">
+                                                    <input id="last_name" type="text" class="validate white-text" name="contact[lname]" required>
+                                                    <label for="last_name">Last Name</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12">
+                                            <div class="row">
+                                                <div class="input-field col s12 m6">
+                                                    <input id="contact" type="tel" class="validate white-text" name="contact[number]" value="+91" pattern="[+0-9]{13}" title="Phone number should be like +919876540321" required>
+                                                    <label for="contact">Contact Number</label>
+                                                </div>
+                                                <div class="input-field col s12 m6 ">
+                                                    <select class="white-text" name="contact[type]">
+                                                         <optgroup label="Home">
+                                                               <option value="Mobile">Mobile</option>
+                                                               <option value="Telephone">Telephone</option>
+                                                         </optgroup>
+                                                         <optgroup label="Work">
+                                                               <option value="Mobile">Mobile</option>
+                                                               <option value="Telephone">Telephone</option>
+                                                         </optgroup>
+                                                   </select>
+                                                    <label>Optgroups</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="reset" class="btn white-text blue"> Reset <i class="material-icons right">refresh</i></button>
+                                        <button type="submit" class="btn white-text green"> Submit <i class="material-icons right">send</i></button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards Ends -->
+
+        <ul class="collection hoverable">
+            <% contacts.forEach(contact => { %>
+                <a href="contacts/<%= contact.id %>" class="collection-item avatar ">
+                    <img src="https://api.adorable.io/avatars/20/<%= contact.id %>" alt="" class="circle">
+                    <span class="title light-blue-text"> <%= contact.fname +" " %> <% if(contact.lname) %> <%=contact.lname %>  </span>
+                    <span class="secondary-content"><i class="material-icons">send</i></span>
+                    <p class="black-text"><%= contact.type %></p>
+                </a>
+                <% }); %>
+
+        </ul>
+
+
+
+    </div>
+    <% include ./partials/footer.ejs %>

@@ -9,8 +9,8 @@ const express = require("express"), //provides ease of server establisment and m
 const client = require("twilio")(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
 // to connect mongoDB hosted on mlab
-//mongoose.connect(process.env.MLAB_SID, {useNewUrlParser: true});
-mongoose.connect("mongodb://localhost:27017/kisan-project", {useNewUrlParser: true}); //local mongoDB
+mongoose.connect(process.env.MLAB_SID, {useNewUrlParser: true});
+//mongoose.connect("mongodb://localhost:27017/kisan-project", {useNewUrlParser: true}); //local mongoDB
 
 // App config or middlewears
 app.set("view engine", "ejs");

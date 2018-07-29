@@ -21,7 +21,7 @@
                                                     <label for="first_name">First Name</label>
                                                 </div>
                                                 <div class="input-field col s12 m6">
-                                                    <input id="last_name" type="text" class="validate white-text" name="contact[lname]" >
+                                                    <input id="last_name" type="text" class="validate white-text" name="contact[lname]" required>
                                                     <label for="last_name">Last Name</label>
                                                 </div>
                                             </div>
@@ -29,7 +29,7 @@
                                         <div class="col s12">
                                             <div class="row">
                                                 <div class="input-field col s12 m6">
-                                                    <input id="contact" type="tel" class="validate white-text" name="contact[number]" value="+91" pattern="[+0-9]{13}" title="Phone number should be like +919876540321 should have 13 digits including +91" required>
+                                                    <input id="contact" type="tel" class="validate white-text" name="contact[number]" value="+91" pattern="[+0-9]{13}" title="Phone number should be like +919876540321" required>
                                                     <label for="contact">Contact Number</label>
                                                 </div>
                                                 <div class="input-field col s12 m6 ">
@@ -48,7 +48,7 @@
                                             </div>
                                         </div>
                                         <button type="reset" class="btn white-text blue"> Reset <i class="material-icons right">refresh</i></button>
-                                        <button type="submit" class="btn white-text green"> Submit <i class="material-icons right">send</i></button>
+                                        <button type="submit" id="addContact" class="btn white-text green"> Submit <i class="material-icons right">send</i></button>
                                     </form>
                                 </div>
                             </li>

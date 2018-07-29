@@ -26,34 +26,29 @@ app.use(bodyParser.json());
 app.use(contactRoutes);
 app.use(sentMessagesRoutes);
 
-
-
-
-
-
-
 // Routes
 // index route, have all the Contact list and add contact option.
 app.get("/", (req, res) => {
 
     // find all contacts and sort according to the date they were created ascending
     if(isVerified ==1 || isVerified==2){
-        if(isVerified==2){
-            setTimeout(()=>{
-                io.emit('guestLogin','index');
-            },300);
-        }
+
         Contact.find().sort({"createdAt": -1}).exec((err, contacts) => {
             if (err) {
                 io.emit('error', err);
             } else {
                 res.render("index", {contacts: contacts});
+                if(isVerified==2){
+                    setTimeout(()=>{
+                        io.emit('guestLogin','index');
+                    },300);
+                }
             }
         })
 
     }
     else{
-        res.redirect("login");
+        res.redirect("/login");
     }
 
 
@@ -70,6 +65,9 @@ app.post('/login',(req,res) =>{
             console.log('Guest');
             isVerified = 2;
             res.redirect("/");
+        }else{
+            res.redirect("/login");
+
         }
 
 })

@@ -43,10 +43,6 @@ socket.on('guestLogin', (data) => {
 
     }
     else if(data=='compose'){
-        M.toast({
-            html: 'Logged In as Guest <i class="material-icons right">done</i>',
-            classes: 'green rounded'
-        });
         button1.disabled = true;
         button1.value = 'Login to send OTP';
     }

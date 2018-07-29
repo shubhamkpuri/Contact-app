@@ -40,7 +40,7 @@ router.get("/contacts/:id", (req, res) => {
 
     }
     else{
-        res.redirect("login");
+        res.redirect("/login");
     }
 
 
@@ -48,23 +48,24 @@ router.get("/contacts/:id", (req, res) => {
 // to compose a OTP message to a particular contact and show form
 router.get("/contacts/:id/compose", (req, res) => {
     if(isVerified ==1 || isVerified==2){
-        if(isVerified==2){
-            setTimeout(()=>{
-                // console.log('compose');
-                io.emit('guestLogin','compose');
-            },500);
-        }
+
         Contact.findById(req.params.id, (err, foundContact) => {
             if (err) {
                 io.emit('error', err);
             } else {
                 res.render("compose", {contact: foundContact});
+                if(isVerified==2){
+                    setTimeout(()=>{
+                        // console.log('compose');
+                        io.emit('guestLogin','compose');
+                    },300);
+                }
             }
         })
 
     }
     else{
-        res.redirect("login");
+        res.redirect("/login");
     }
 
 })
@@ -106,7 +107,7 @@ router.post("/contacts/:id/compose", (req, res) => {
 
     }
     else{
-        res.redirect("login");
+        res.redirect("/login");
     }
 
 
